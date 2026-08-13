@@ -23,8 +23,9 @@ pipeline {
 
         stage("SonarQube Analysis") {
             steps {
-                withSonarQubeEnv('Sonar') {
+                withSonarQubeEnv() {
                     sh '''
+                           ./gradlew sonar \
                           -Dsonar.projectKey=adservice \
                           -Dsonar.projectName=adservice
                     '''
