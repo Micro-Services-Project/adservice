@@ -15,12 +15,10 @@ pipeline {
         }
 
         stage("Git-Checkout") {
-            steps {
-                git branch: 'main',
-                    url: 'https://github.com/Micro-Services-Project/adservice.git'
+             steps {
+                git branch: 'main', url: 'https://github.com/Micro-Services-Project/adservice.git'
             }
         }
-
         stage("SonarQube Analysis") {
             steps {
                 withSonarQubeEnv('Sonar') {
