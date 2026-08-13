@@ -16,17 +16,8 @@ pipeline {
         }
         stage('SonarQube Analysis') {
             steps {
-                script {
-                    def scannerHome = tool 'Sonar'
-
-                    withSonarQubeEnv('Sonar') {
-                        sh """
-                            ${scannerHome}/bin/sonar-scanner \
-                            -Dsonar.projectKey=adservice \
-                            -Dsonar.projectName=adservice \
-                            -Dsonar.sources=.
-                        """
-                    }
+                withSonarQubeEnv('Sonar') {
+                sh './gradlew sonar'
                 }
             }
         }
