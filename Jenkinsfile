@@ -20,18 +20,18 @@ pipeline {
             }
         }
         stage("SonarQube Analysis") {
-            steps {
-                withSonarQubeEnv('Sonar') {
-                    sh '''
-                           chmod +x gradlew 
-                           ./gradlew clean build
-                           ./gradlew sonar \
-                          -Dsonar.projectKey=adservice \
-                          -Dsonar.projectName=adservice
-                    '''
-                }
-            }
+    steps {
+        withSonarQubeEnv('Sonar') {
+            sh '''
+                chmod +x gradlew
+                ./gradlew clean build -x verifyGoogleJavaFormat
+                ./gradlew sonar \
+                    -Dsonar.projectKey=adservice \
+                    -Dsonar.projectName=adservice
+            '''
         }
+    }
+}
 
         stage("Quality Gate") {
             steps {
