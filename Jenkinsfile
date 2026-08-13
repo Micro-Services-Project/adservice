@@ -19,7 +19,7 @@ pipeline {
                 withSonarQubeEnv('Sonar') {
                 sh '''
                     chmod +x gradlew
-                    ./gradlew sonar \
+                    ./gradlew Sonar \
                     -Dsonar.projectKey=adservice \
                     -Dsonar.projectName=adservice
                   '''
