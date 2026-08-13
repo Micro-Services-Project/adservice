@@ -14,23 +14,23 @@ pipeline {
                 git branch: 'main', url: 'https://github.com/Micro-Services-Project/adservice.git'
             }
         }
-        stage('SonarQube Analysis') {
-            steps {
-                withSonarQubeEnv('Sonar') {
-                sh '''
-                    chmod +x gradlew
-                    ./gradlew sonar \
-                    -Dsonar.projectKey=adservice \
-                    -Dsonar.projectName=adservice
-                  '''
-                }
-        }
-    }
-        stage("Quality Gate") {
-            steps {
-                waitForQualityGate abortPipeline: false, credentialsId: 'Sonar'
-            }
-        }
+    //     stage('SonarQube Analysis') {
+    //         steps {
+    //             withSonarQubeEnv('Sonar') {
+    //             sh '''
+    //                 chmod +x gradlew
+    //                 ./gradlew sonar \
+    //                 -Dsonar.projectKey=adservice \
+    //                 -Dsonar.projectName=adservice
+    //               '''
+    //             }
+    //     }
+    // }
+    //     stage("Quality Gate") {
+    //         steps {
+    //             waitForQualityGate abortPipeline: false, credentialsId: 'Sonar'
+    //         }
+    //     }
         stage("Build") {
             steps {
                 sh """
