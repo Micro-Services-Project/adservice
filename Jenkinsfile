@@ -17,13 +17,14 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('Sonar') {
-                    sh '''
-                        chmod +x gradlew
-                        ./gradlew Sonar
-                    '''
-                }
-            }
+                sh '''
+                    chmod +x gradlew
+                    ./gradlew sonar \
+                    -Dsonar.projectKey=adservice \
+                    -Dsonar.projectName=adservice
+            '''
         }
+    }
         stage("Quality Gate") {
             steps {
                 waitForQualityGate abortPipeline: false, credentialsId: 'Sonar'
