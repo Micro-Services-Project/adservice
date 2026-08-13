@@ -4,11 +4,6 @@ pipeline {
         IMAGE_NAME = "obitomanu/adservice:${GIT_COMMIT}"
     }
     stages {
-        stage ("CleanWS"){
-            steps {
-                cleanWs()
-            }
-        }
         stage("Git-Checkout") {
             steps {
                 git branch: 'main', url: 'https://github.com/Micro-Services-Project/adservice.git'
