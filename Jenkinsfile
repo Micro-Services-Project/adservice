@@ -22,7 +22,8 @@ pipeline {
                     ./gradlew sonar \
                     -Dsonar.projectKey=adservice \
                     -Dsonar.projectName=adservice
-            '''
+                  '''
+                }
         }
     }
         stage("Quality Gate") {
